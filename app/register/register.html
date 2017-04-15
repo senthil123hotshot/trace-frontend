@@ -1,0 +1,29 @@
+<!-- Login UI with all fields -->
+
+<h1> <font color="black">User Registration</font></h1>
+	
+  
+   <font color="black"> {{error}}</font>
+	<section>
+    <form name="form">
+      <div ng-control-group="credentials">
+          <label for="name"><font color="red">Enter the Email</font></label>
+          <input
+            type="email"
+            name="email"
+            ng-model="email"><span style="color: red" ng-show="form.email.$error.email">please provide valid email</span><br/><br/>
+
+          <label><font color="red">Password</font></label>
+          <input
+            type="password"
+            name="password"
+            ng-model="password"
+            > <span style="color: red"  ng-show=" password.length < 3 ">password must be more than 3 char</span> <br/><br/>
+
+      </div>
+
+      <button ng-click="register(email,password);">Register Now</button>
+
+    </form>
+    </section>
+  {{allData.message}}

@@ -1,0 +1,37 @@
+<!DOCTYPE html><ul><li>
+<!-- this is for top folder view -->
+        <div ng-repeat="x in allData.myfolder">     
+       <button ng-click="specified(x.FolderID)">{{x.FolderName}}</button>  
+</li>
+        </ul>     
+</div>
+<div ng-repeat="v in myData.content track by $index">
+<a href="http://{{v.link}}">{{v.link}}</a>
+{{v.created}}
+	{{v.document}}
+</div>
+
+<!-- this for more folders view
+ --><button ng-click="showall();">show all the folders</button>
+<ul><li>
+<div ng-repeat="y in moreData.myfolder">
+<button ng-click="specified(y.FolderID)">{{y.FolderName}}</button> 
+</li>
+  </ul>      
+</div>
+
+
+<div ng-repeat="i in myData.details track by $index">
+<a href="http://{{i.link}}">{{g.link}}</a>
+	{{i.created}}
+	{{i.document}}
+</div>
+
+
+
+<!-- this is for general display
+ --><div ng-repeat="g in genData.general track by $index">
+<a href="http://{{g.link}}">{{g.link}}</a>
+	{{g.created}}
+	{{g.document}}
+</div>
