@@ -12,6 +12,12 @@
             type="email"
             name="email"
             ng-model="email"><span style="color: red" ng-show="form.email.$error.email">please provide valid email</span><br/><br/>
+<label><font color="red">PhoneNo</font></label>
+          <input
+            type="number"
+            name="PhoneNo"
+            ng-model="PhoneNo"
+            > <span style="color: red"  ng-show=" PhoneNo.length<10 ">Enter valid Phone number</span> <br/><br/>
 
           <label><font color="red">Password</font></label>
           <input
@@ -20,10 +26,14 @@
             ng-model="password"
             > <span style="color: red"  ng-show=" password.length < 3 ">password must be more than 3 char</span> <br/><br/>
 
+
       </div>
-
-      <button ng-click="register(email,password);">Register Now</button>
-
+  
+      <button ng-click="otp(PhoneNo);">Generate OTP</button>
+      {{otpData.message}}<br>
+   <div>Enter the OTP:<input type="text" name="userotp"  ng-model="userotp"></div>
+    <button ng-click="register(email,password,PhoneNo,userotp);">submit</button>  
+     {{allData.message}}  
     </form>
     </section>
-  {{allData.message}}
+ 

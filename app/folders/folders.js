@@ -9,7 +9,7 @@ angular.module('myApp.folders', ['ngRoute'])
   });
 }])
 
-.controller('FoldCtrl', function($scope,$http,$rootScope,$location,$cookieStore) {				
+.controller('FoldCtrl', function($scope,$http,$rootScope,$location,$cookieStore,$route) {				
 	$http({
 
 						method:'POST',
@@ -53,14 +53,19 @@ $scope.specified=function(x){
 			})
 			            .then(function successCallback(response) {
 			            			$scope.groundFlag = true;
-									$scope.myData = response.data.content;
+			            			//$scope.myData = response.data;
+									$scope.myData = response.data.content[0].details;
 									$rootScope.myData =$scope.myData ; 			
-									console.log(JSON.stringify($scope.myData));
+									//console.log(JSON.stringify(response.data.content[0].details));
+
+
+
 								},function errorCallback(response) {
     							console.log(response);});
 										
 				}
 $scope.showall=function(){
+	$scope.myVar = !$scope.myVar;
 	$http({
 
 						method:'POST',
@@ -71,9 +76,34 @@ $scope.showall=function(){
 			            			$scope.groundFlag = true;
 									$scope.moreData = response.data;
 									$rootScope.moreData =$scope.moreData ; 
+									
 									//console.log(response.data.success);
 									//console.log(JSON.stringify(response.data.content[0].details[0].created));*/
 								});			
 
 		}	
+		$scope.new=function(name){
+
+			$scope.folder_name=name;
+	$http({
+
+						method:'POST',
+						url:'http://127.0.0.1:3000/folderadd',
+						data:{"token":$cookieStore.get("Usertoken"),"folder_name":$scope.folder_name}
+			})
+			            .then(function successCallback(response) {
+			            			$scope.groundFlag = true;
+									$scope.newData = response.data;
+									$rootScope.newData =$scope.newData ;
+									$route.reload()
+									//console.log(response.data.success);
+									//console.log(JSON.stringify(response.data.content[0].details[0].created));*/
+								});			
+
+		}	
+
+
+
+
+		 
 });
