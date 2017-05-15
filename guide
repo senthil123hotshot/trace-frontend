@@ -1,0 +1,9 @@
+to run download the code.
+install angularjs
+open app folder in command prompt
+type npm start
+it will run
+open browser.
+type localhost :8000
+
+
