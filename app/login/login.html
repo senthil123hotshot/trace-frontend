@@ -3,7 +3,7 @@
 <h1> <font color="black">User Login</font></h1>
 	
   
-   <font color="white"> {{error}}</font>
+   <font color="red"> {{error}}</font>
 	<section>
     <form name="form">
       <div ng-control-group="credentials">
@@ -25,12 +25,17 @@
       <button ng-click="login(email,password);">Login</button>
      <a href="" ng-click="foget(email)"> forgotten password</a>
 
-
-
-    </form>
+   <!--  </form>
     </section>
   <font color="blue"> {{allData.message}}<br>{{allData.UserName}}<br>
   {{
  allData.ddMMyyyy
   }}<br>
-  </font>
+  </font> -->
+  <div>
+  <a href="http://127.0.0.1:3000/auth/facebook"><img src="images/fb-login.jpg" width="151" height="24"></a>
+  <a href="http://127.0.0.1:3000/auth/twitter"><img src="images/sign-in-with-twitter-l.png" width="151" height="24">
+  </a>
+  <a href="http://127.0.0.1:3000/auth/google"><img src="images/google-login.jpg" width="151" height="24"></a>
+  <a href="http://127.0.0.1:3000/auth/linkedin"><img src="images/sign-in-with-linkedin-l.png" width="151" height="24"></a>
+  </div>

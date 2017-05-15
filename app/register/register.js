@@ -42,7 +42,7 @@ $scope.register=function(x,y,z,a){
 									$rootScope.allData =$scope.allData ;
 
 									
-										$location.path('/folders');
+										$location.path('/login');
 									
 							
 								}, function errorCallback(response) {

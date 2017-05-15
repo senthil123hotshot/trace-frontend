@@ -13,7 +13,7 @@ angular.module('myApp.folders', ['ngRoute'])
 	$http({
 
 						method:'POST',
-						url:'http://127.0.0.1:3000/folderdisplay',
+						url:'http://127.0.0.1:3000/topfolderdisplay',
 						data:{"token":$cookieStore.get("Usertoken")}
 			})
 			            .then(function successCallback(response) {
@@ -22,7 +22,7 @@ angular.module('myApp.folders', ['ngRoute'])
 									$rootScope.allData =$scope.allData ;	
 
 						}, function errorCallback(err) {
-    							console.log(response);
+    							//console.log(response);
 						});
 
 $http({
@@ -35,7 +35,7 @@ $http({
 			            			$scope.groundFlag = true;
 									$scope.genData = response.data;
 									$rootScope.genData =$scope.genData ;	
-									//console.log(response.data.general[0].created);
+									console.log(response.data);
 						}, function errorCallback(response) {
     							console.log(response);
 						});
@@ -54,9 +54,9 @@ $scope.specified=function(x){
 			            .then(function successCallback(response) {
 			            			$scope.groundFlag = true;
 			            			//$scope.myData = response.data;
-									$scope.myData = response.data.content[0].details;
+									$scope.myData = response.data.content;
 									$rootScope.myData =$scope.myData ; 			
-									//console.log(JSON.stringify(response.data.content[0].details));
+									console.log(JSON.stringify(response.data.content));
 
 
 
@@ -69,7 +69,7 @@ $scope.showall=function(){
 	$http({
 
 						method:'POST',
-						url:'http://127.0.0.1:3000/moredisplay',
+						url:'http://127.0.0.1:3000/folderdisplay',
 						data:{"token":$cookieStore.get("Usertoken"),"FolderID":$scope.FolderID}
 			})
 			            .then(function successCallback(response) {
@@ -82,6 +82,8 @@ $scope.showall=function(){
 								});			
 
 		}	
+
+		//here call the folderadd api.
 		$scope.new=function(name){
 
 			$scope.folder_name=name;
@@ -100,10 +102,46 @@ $scope.showall=function(){
 									//console.log(JSON.stringify(response.data.content[0].details[0].created));*/
 								});			
 
+		}		
+
+		$scope.rename=function(old,new1){
+
+			$scope.folderoldername=old;
+			$scope.foldernewname=new1;
+	$http({
+
+						method:'POST',
+						url:'http://127.0.0.1:3000/folderrename',
+						data:{"token":$cookieStore.get("Usertoken"),"folderoldername":$scope.folderoldername,"foldernewname":$scope.foldernewname}
+			})
+			            .then(function successCallback(response) {
+			            			$scope.groundFlag = true;
+									$scope.reData = response.data;
+									$rootScope.reData =$scope.reData ;
+									$route.reload()//for auto refersh the page
+									//console.log(response.data.success);
+									//console.log(JSON.stringify(response.data.content[0].details[0].created));*/
+								});			
+
 		}	
+		$scope.search=function(key){
 
+			$scope.keyword=key;
+			
+	$http({
 
+						method:'POST',
+						url:'http://127.0.0.1:3000/searchByBar',
+						data:{"token":$cookieStore.get("Usertoken"),"keyword":$scope.keyword}
+			})
+			            .then(function successCallback(response) {
+			            			$scope.groundFlag = true;
+									$scope.searchData = response.data;
+									$rootScope.searchData =$scope.reData ;
+									$route.reload()//for auto refersh the page
+									//console.log(response.data.success);
+									//console.log(JSON.stringify(response.data.content[0].details[0].created));*/
+								});			
 
-
-		 
+		}				 			 
 });

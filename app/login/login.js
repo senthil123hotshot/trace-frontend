@@ -5,9 +5,9 @@ angular.module('myApp.login', ['ngRoute'])
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/login', {
   	//validation for login if , user already login or not 
-  	/*resolve :{
+  /*	resolve :{
   		"check":function($rootScope,$location,$cookieStore){
-  			var adminToken = $cookieStore.get('adminToken');
+  			var adminToken = $cookieStore.get('Usertoken');
 
   			if(adminToken!=undefined){
   				$rootScope.hideit=false;
@@ -16,7 +16,7 @@ angular.module('myApp.login', ['ngRoute'])
   			}
   			if($rootScope.flag){
   				console.log("already login check");
-  				//$location.path('/nextpath');//put here the home page;
+  				$location.path('/folders');//put here the home page;
   			}
 
   		}
@@ -54,19 +54,22 @@ $scope.login=function(x,y){
 							        $cookieStore.put('Usertoken',response.data.token);
 							  $scope.allData.ddMMyyyy = $filter('date')(new Date(), 'dd/MM/yyyy HH:mm:ss');
 							console.log(JSON.stringify($scope.allData.ddMMyyyy));
-									console.log(JSON.stringify(response.data.message));
+									if(response.data.message=="Email not exist");{
+										$location.path('/login');
+									}
+										$location.path('/folders');
 									console.log(JSON.stringify(response.data.token));
-									$location.path('/folders');
 								}, function errorCallback(response) {
-    							console.log("ffff");
+    							console.log("User Not Exist");
+    							$scope.error="User Not Exists.Must Register"
+
 						});
 				}
 
 }
-
 $scope.foget=function(x){
 	$scope.email=x;
-	$scope.allData;
+	$scope.allData1;
 	$rootScope.allData=[];
 
 		$scope.error="" ;
@@ -83,8 +86,8 @@ $scope.foget=function(x){
 			            .then(function successCallback(response) {
 			            	
 			            			$scope.groundFlag = true;
-									$scope.allData = response.data;
-									$rootScope.allData =$scope.allData ;
+									$scope.allData1 = response.data;
+									$rootScope.allData =$scope.allData1 ;
 									var date = new Date();
        						 
 									//$location.path('/booking');

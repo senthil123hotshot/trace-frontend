@@ -4,6 +4,12 @@
 	<button ng-click="new(FolderName)">create folder</button>
 </form>
 {{newData.message}}
+<form>
+	<input type="text" name="FolderoldName" ng-model="FolderoldName">
+	<input type="text" name="FoldernewName" ng-model="FoldernewName">
+	<button ng-click="rename(FolderoldName,FoldernewName)">Rename folder</button>
+</form>
+{{reData.message}}
 <!-- this is for top folder view -->
         <div ng-repeat="x in allData.myfolder">     
        <button ng-click="specified(x.FolderID)">{{x.FolderName}}</button>{{x.created}}  
@@ -24,9 +30,12 @@
 </div>
 <!-- <!- this is for general display
  --><div ng-repeat="g in genData.general track by $index">
- <a href="{{g.link.link}}">{{g.link.link}}</a><br>
+ <a href="{{g.link}}">{{g.link}}</a><br>
  {{g.created}}<br>
- 	{{g.link.value.description}}<br>
- 	{{g.link.value.title}}
 	{{g.document}}<br>
 </div>
+<form>
+	<input type="text" name="keyword" ng-model="searchbar">	
+	<button ng-click="search(keyword)">search</button>
+</form>
+{{reData.message}}
